@@ -1,5 +1,5 @@
-import Formatter_Pair_Primitives
-import Formatter_Primitives_Test_Support
+import Formatter_Pair
+import Formatter_Test_Support
 import Testing
 
 private struct DecimalFormatter: Formatter.`Protocol` {
