@@ -13,13 +13,13 @@ public struct Format<Input, Output, Failure: Swift.Error> {
 extension Format {
 
     @inlinable
-    public init<F: Formatter.`Protocol`>(_ source: F)
+    public init<F: Formatter::Formatter.`Protocol`>(_ source: F)
     where F.Input == Input, F.Output == Output, F.Failure == Failure {
         self.init { value throws(Failure) in try source.format(value) }
     }
 }
 
-extension Format: Formatter.`Protocol` {
+extension Format: Formatter::Formatter.`Protocol` {
 
     @inlinable
     public func format(_ value: Input) throws(Failure) -> Output {

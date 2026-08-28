@@ -1,6 +1,6 @@
-public import Formatter_Primitive
+public import Formatter
 
-extension Formatter {
+extension Formatter::Formatter {
 
     public protocol `Protocol`<Input, Output, Failure> {
 

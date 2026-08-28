@@ -3,7 +3,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "swift-formatter-primitives",
+    name: "swift-formatter",
     platforms: [
         .macOS(.v27),
         .iOS(.v27),
@@ -14,8 +14,8 @@ let package = Package(
     products: [
 
         .library(
-            name: "Formatter Primitive",
-            targets: ["Formatter Primitive"]
+            name: "Formatter",
+            targets: ["Formatter"]
         ),
         .library(
             name: "Formatter Protocol",
@@ -32,89 +32,77 @@ let package = Package(
         ),
 
         .library(
-            name: "Formatter Pair Primitives",
-            targets: ["Formatter Pair Primitives"]
+            name: "Formatter Pair",
+            targets: ["Formatter Pair"]
         ),
 
-        .library(
-            name: "Formatter Primitives",
-            targets: ["Formatter Primitives"]
-        ),
-
-        .library(
-            name: "Formatter Primitives Test Support",
-            targets: ["Formatter Primitives Test Support"]
-        ),
     ],
     dependencies: [
         .package(
-            url: "https://github.com/swift-primitives/swift-either-primitives.git",
+            url: "https://github.com/swift-atoms/swift-either.git",
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-primitives/swift-pair-primitives.git",
+            url: "https://github.com/swift-atoms/swift-pair.git",
             branch: "main"
         ),
     ],
     targets: [
 
         .target(
-            name: "Formatter Primitive",
+            name: "Formatter",
             dependencies: []
         ),
         .target(
             name: "Formatter Protocol",
             dependencies: [
-                "Formatter Primitive"
+                .target(name: "Formatter")
             ]
         ),
         .target(
             name: "Formattable",
             dependencies: [
-                "Formatter Protocol"
+                .target(name: "Formatter Protocol")
             ]
         ),
 
         .target(
             name: "Format",
             dependencies: [
-                "Formatter Protocol"
+                .target(name: "Formatter Protocol")
             ]
         ),
 
         .target(
-            name: "Formatter Pair Primitives",
+            name: "Formatter Pair",
             dependencies: [
-                "Formattable",
-                "Formatter Protocol",
-                .product(name: "Either Primitives", package: "swift-either-primitives"),
-                .product(name: "Pair Primitives", package: "swift-pair-primitives"),
+                .target(name: "Formattable"),
+                .target(name: "Formatter Protocol"),
+                .product(name: "Either", package: "swift-either"),
+                .product(name: "Pair", package: "swift-pair"),
             ]
-        ),
-
-        .target(
-            name: "Formatter Primitives",
-            dependencies: [
-                "Format",
-                "Formattable",
-                "Formatter Pair Primitives",
-                "Formatter Primitive",
-                "Formatter Protocol",
-            ]
-        ),
-
-        .target(
-            name: "Formatter Primitives Test Support",
-            dependencies: [
-                "Formatter Primitives"
-            ],
-            path: "Tests/Support"
         ),
 
         .testTarget(
-            name: "Formatter Pair Primitives Tests",
+            name: "Formatter Tests",
+            dependencies: [.target(name: "Formatter")]
+        ),
+        .testTarget(
+            name: "Formatter Protocol Tests",
+            dependencies: [.target(name: "Formatter Protocol")]
+        ),
+        .testTarget(
+            name: "Formattable Tests",
+            dependencies: [.target(name: "Formattable")]
+        ),
+        .testTarget(
+            name: "Format Tests",
+            dependencies: [.target(name: "Format")]
+        ),
+        .testTarget(
+            name: "Formatter Pair Tests",
             dependencies: [
-                "Formatter Primitives Test Support"
+                .target(name: "Formatter Pair")
             ]
         ),
     ],

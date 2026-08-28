@@ -1,4 +1,4 @@
-# Formatter Primitives
+# Formatter
 
 ![Development Status](https://img.shields.io/badge/status-active--development-blue.svg)
 
@@ -14,7 +14,7 @@ The abstract formatting-capability layer for Swift — a `Formatter.Protocol` fo
 import Formatter_Protocol
 
 // A concrete formatter is one type per format x value pair.
-struct PercentFormatter: Formatter.`Protocol` {
+struct PercentFormatter: Formatter::Formatter.`Protocol` {
     typealias Input = Double
     typealias Output = String
     typealias Failure = Never
@@ -47,7 +47,7 @@ let ratio = 0.42.formatted()  // "42%"
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/swift-primitives/swift-formatter-primitives.git", branch: "main")
+    .package(url: "https://github.com/swift-atoms/swift-formatter.git", branch: "main")
 ]
 ```
 
@@ -55,7 +55,7 @@ dependencies: [
 .target(
     name: "App",
     dependencies: [
-        .product(name: "Formatter Primitives", package: "swift-formatter-primitives"),
+        .product(name: "Formatter Protocol", package: "swift-formatter"),
     ]
 )
 ```
@@ -70,17 +70,15 @@ Two roots in one package: `Formatter` is the capability namespace, `Formattable`
 
 | Product | When to import |
 |---------|----------------|
-| `Formatter Primitive` | Extending the `Formatter` namespace alone — zero transitive cost. |
+| `Formatter` | Extending the `Formatter` namespace alone — zero transitive cost. |
 | `Formatter Protocol` | Writing a concrete `Formatter.\`Protocol\`` conformer. |
 | `Formattable` | Attaching a canonical formatter to a value type and calling `.formatted()`. |
 | `Format` | Using the closure-backed `Format<Input, Output, Failure>` witness or its type-eraser. |
-| `Formatter Pair Primitives` | Composing two formatters into a binary `Pair` formatter. |
-| `Formatter Primitives` (umbrella) | The union of the above — convenient for prototyping and tests. |
-| `Formatter Primitives Test Support` | Re-exports the umbrella for downstream test targets. |
+| `Formatter Pair` | Composing two formatters into a binary `Pair` formatter. |
 
-The `Format` witness wraps a `format` closure and doubles as a type-eraser for storing heterogeneous formatters; import the `Format` product directly to use it. The `Pair` integration conforms `Pair<First, Second>` to `Formatter.\`Protocol\`` when both arms are formatters, routing distinct inputs to each arm and unifying failures through `Either`.
+The `Format` witness wraps a `format` closure; import the `Format` product directly to use it. The `Pair` integration conforms `Pair<First, Second>` to `Formatter.Protocol` when both arms are formatters, routing distinct inputs to each arm and unifying failures through `Either`.
 
-Two external dependencies (`swift-either-primitives`, `swift-pair-primitives`), no Foundation.
+Two external dependencies (`swift-either`, `swift-pair`), no Foundation.
 
 ---
 
