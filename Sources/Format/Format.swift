@@ -1,3 +1,5 @@
+public import Formatter_Protocol
+
 public struct Format<Input, Output, Failure: Swift.Error> {
 
     public var _format: (Input) throws(Failure) -> Output

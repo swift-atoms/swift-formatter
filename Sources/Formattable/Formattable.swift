@@ -1,6 +1,9 @@
+public import Formatter_Primitive
+public import Formatter_Protocol
+
 public protocol Formattable {
 
-    associatedtype Formatter: Formatter::Formatter.`Protocol`
+    associatedtype Formatter: Formatter_Primitive.Formatter.`Protocol`
 
     static var formatter: Formatter { get }
 }

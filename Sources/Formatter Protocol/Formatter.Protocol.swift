@@ -1,3 +1,5 @@
+public import Formatter_Primitive
+
 extension Formatter {
 
     public protocol `Protocol`<Input, Output, Failure> {

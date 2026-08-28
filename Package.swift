@@ -12,40 +12,110 @@ let package = Package(
         .visionOS(.v27),
     ],
     products: [
+
+        .library(
+            name: "Formatter Primitive",
+            targets: ["Formatter Primitive"]
+        ),
+        .library(
+            name: "Formatter Protocol",
+            targets: ["Formatter Protocol"]
+        ),
+        .library(
+            name: "Formattable",
+            targets: ["Formattable"]
+        ),
+
+        .library(
+            name: "Format",
+            targets: ["Format"]
+        ),
+
+        .library(
+            name: "Formatter Pair",
+            targets: ["Formatter Pair"]
+        ),
+
         .library(
             name: "Formatter",
             targets: ["Formatter"]
         ),
+
         .library(
-            name: "Formatter Standard Library Integration",
-            targets: ["Formatter Standard Library Integration"]
-        ),
-        .library(
-            name: "Formatter Apple Foundation Integration",
-            targets: ["Formatter Apple Foundation Integration"]
+            name: "Formatter Test Support",
+            targets: ["Formatter Test Support"]
         ),
     ],
-    dependencies: [],
+    dependencies: [
+        .package(
+            url: "https://github.com/swift-molecules/swift-either.git",
+            branch: "main"
+        ),
+        .package(
+            url: "https://github.com/swift-molecules/swift-pair.git",
+            branch: "main"
+        ),
+    ],
     targets: [
+
         .target(
-            name: "Formatter",
+            name: "Formatter Primitive",
             dependencies: []
         ),
         .target(
-            name: "Formatter Standard Library Integration",
-            dependencies: ["Formatter"]
-        ),
-        .target(
-            name: "Formatter Apple Foundation Integration",
+            name: "Formatter Protocol",
             dependencies: [
-                "Formatter",
-                "Formatter Standard Library Integration",
+                "Formatter Primitive"
             ]
         ),
+        .target(
+            name: "Formattable",
+            dependencies: [
+                "Formatter Protocol"
+            ]
+        ),
+
+        .target(
+            name: "Format",
+            dependencies: [
+                "Formatter Protocol"
+            ]
+        ),
+
+        .target(
+            name: "Formatter Pair",
+            dependencies: [
+                "Formattable",
+                "Formatter Protocol",
+                .product(name: "Either", package: "swift-either"),
+                .product(name: "Pair", package: "swift-pair"),
+            ]
+        ),
+
+        .target(
+            name: "Formatter",
+            dependencies: [
+                "Format",
+                "Formattable",
+                "Formatter Pair",
+                "Formatter Primitive",
+                "Formatter Protocol",
+            ]
+        ),
+
+        .target(
+            name: "Formatter Test Support",
+            dependencies: [
+                "Formatter"
+            ],
+            path: "Tests/Support"
+        ),
+
         .testTarget(
-            name: "Formatter Tests",
-            dependencies: ["Formatter"],
-            path: "Tests/Formatter Tests"
+            name: "Formatter Pair Tests",
+            dependencies: [
+                "Formatter Test Support"
+            ]
         ),
     ],
     swiftLanguageModes: [.v6]
