@@ -1,7 +1,7 @@
-extension Pair: Formatter.`Protocol`
+extension Pair: Formatter::Formatter.`Protocol`
 where
-    First: Formatter.`Protocol`,
-    Second: Formatter.`Protocol`
+    First: Formatter::Formatter.`Protocol`,
+    Second: Formatter::Formatter.`Protocol`
 {
 
     public typealias Input = Pair<First.Input, Second.Input>

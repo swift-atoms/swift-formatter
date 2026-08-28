@@ -1,8 +1,7 @@
 import Formatter_Pair
-import Formatter_Test_Support
 import Testing
 
-private struct DecimalFormatter: Formatter.`Protocol` {
+private struct DecimalFormatter: Formatter::Formatter.`Protocol` {
 }
 
 extension DecimalFormatter {
@@ -15,7 +14,7 @@ extension DecimalFormatter {
     }
 }
 
-private struct AlwaysFailing<Input, Output, Failure: Swift.Error>: Formatter.`Protocol` {
+private struct AlwaysFailing<Input, Output, Failure: Swift.Error>: Formatter::Formatter.`Protocol` {
     let error: Failure
 }
 

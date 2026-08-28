@@ -14,8 +14,8 @@ let package = Package(
     products: [
 
         .library(
-            name: "Formatter Primitive",
-            targets: ["Formatter Primitive"]
+            name: "Formatter",
+            targets: ["Formatter"]
         ),
         .library(
             name: "Formatter Protocol",
@@ -36,85 +36,73 @@ let package = Package(
             targets: ["Formatter Pair"]
         ),
 
-        .library(
-            name: "Formatter",
-            targets: ["Formatter"]
-        ),
-
-        .library(
-            name: "Formatter Test Support",
-            targets: ["Formatter Test Support"]
-        ),
     ],
     dependencies: [
         .package(
-            url: "https://github.com/swift-molecules/swift-either.git",
+            url: "https://github.com/swift-atoms/swift-either.git",
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-molecules/swift-pair.git",
+            url: "https://github.com/swift-atoms/swift-pair.git",
             branch: "main"
         ),
     ],
     targets: [
 
         .target(
-            name: "Formatter Primitive",
+            name: "Formatter",
             dependencies: []
         ),
         .target(
             name: "Formatter Protocol",
             dependencies: [
-                "Formatter Primitive"
+                .target(name: "Formatter")
             ]
         ),
         .target(
             name: "Formattable",
             dependencies: [
-                "Formatter Protocol"
+                .target(name: "Formatter Protocol")
             ]
         ),
 
         .target(
             name: "Format",
             dependencies: [
-                "Formatter Protocol"
+                .target(name: "Formatter Protocol")
             ]
         ),
 
         .target(
             name: "Formatter Pair",
             dependencies: [
-                "Formattable",
-                "Formatter Protocol",
+                .target(name: "Formattable"),
+                .target(name: "Formatter Protocol"),
                 .product(name: "Either", package: "swift-either"),
                 .product(name: "Pair", package: "swift-pair"),
             ]
         ),
 
-        .target(
-            name: "Formatter",
-            dependencies: [
-                "Format",
-                "Formattable",
-                "Formatter Pair",
-                "Formatter Primitive",
-                "Formatter Protocol",
-            ]
+        .testTarget(
+            name: "Formatter Tests",
+            dependencies: [.target(name: "Formatter")]
         ),
-
-        .target(
-            name: "Formatter Test Support",
-            dependencies: [
-                "Formatter"
-            ],
-            path: "Tests/Support"
+        .testTarget(
+            name: "Formatter Protocol Tests",
+            dependencies: [.target(name: "Formatter Protocol")]
         ),
-
+        .testTarget(
+            name: "Formattable Tests",
+            dependencies: [.target(name: "Formattable")]
+        ),
+        .testTarget(
+            name: "Format Tests",
+            dependencies: [.target(name: "Format")]
+        ),
         .testTarget(
             name: "Formatter Pair Tests",
             dependencies: [
-                "Formatter Test Support"
+                .target(name: "Formatter Pair")
             ]
         ),
     ],
