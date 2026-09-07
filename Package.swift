@@ -12,30 +12,10 @@ let package = Package(
         .visionOS(.v27),
     ],
     products: [
-
-        .library(
-            name: "Formatter",
-            targets: ["Formatter"]
-        ),
-        .library(
-            name: "Formatter Protocol",
-            targets: ["Formatter Protocol"]
-        ),
-        .library(
-            name: "Formattable",
-            targets: ["Formattable"]
-        ),
-
-        .library(
-            name: "Format",
-            targets: ["Format"]
-        ),
-
-        .library(
-            name: "Formatter Pair",
-            targets: ["Formatter Pair"]
-        ),
-
+        .library(name: "Formatter", targets: ["Formatter"]),
+        .library(name: "Formatter Standard Library Integration", targets: ["Formatter Standard Library Integration"]),
+        .library(name: "Formatter Foundation Library Integration", targets: ["Formatter Foundation Library Integration"]),
+        .library(name: "Formatter Test Support", targets: ["Formatter Test Support"]),
     ],
     dependencies: [
         .package(
@@ -48,69 +28,52 @@ let package = Package(
         ),
     ],
     targets: [
-
         .target(
             name: "Formatter",
-            dependencies: []
-        ),
-        .target(
-            name: "Formatter Protocol",
             dependencies: [
-                .target(name: "Formatter")
-            ]
-        ),
-        .target(
-            name: "Formattable",
-            dependencies: [
-                .target(name: "Formatter Protocol")
-            ]
-        ),
-
-        .target(
-            name: "Format",
-            dependencies: [
-                .target(name: "Formatter Protocol")
-            ]
-        ),
-
-        .target(
-            name: "Formatter Pair",
-            dependencies: [
-                .target(name: "Formattable"),
-                .target(name: "Formatter Protocol"),
                 .product(name: "Either", package: "swift-either"),
                 .product(name: "Pair", package: "swift-pair"),
-            ]
+            ],
+            path: "Sources/Formatter"
         ),
-
+        .target(
+            name: "Formatter Standard Library Integration",
+            dependencies: [
+                .target(name: "Formatter"),
+            ],
+            path: "Sources/Formatter Standard Library Integration"
+        ),
+        .target(
+            name: "Formatter Foundation Library Integration",
+            dependencies: [
+                .target(name: "Formatter"),
+                .target(name: "Formatter Standard Library Integration"),
+            ],
+            path: "Sources/Formatter Foundation Library Integration"
+        ),
+        .target(
+            name: "Formatter Test Support",
+            dependencies: [
+                .target(name: "Formatter"),
+            ],
+            path: "Tests/Support"
+        ),
         .testTarget(
             name: "Formatter Tests",
-            dependencies: [.target(name: "Formatter")]
-        ),
-        .testTarget(
-            name: "Formatter Protocol Tests",
-            dependencies: [.target(name: "Formatter Protocol")]
-        ),
-        .testTarget(
-            name: "Formattable Tests",
-            dependencies: [.target(name: "Formattable")]
-        ),
-        .testTarget(
-            name: "Format Tests",
-            dependencies: [.target(name: "Format")]
-        ),
-        .testTarget(
-            name: "Formatter Pair Tests",
             dependencies: [
-                .target(name: "Formatter Pair")
-            ]
+                .target(name: "Formatter"),
+                .target(name: "Formatter Test Support"),
+                .target(name: "Formatter Standard Library Integration"),
+                .target(name: "Formatter Foundation Library Integration"),
+            ],
+            path: "Tests/Formatter Tests"
         ),
     ],
     swiftLanguageModes: [.v6]
 )
 
-for target in package.targets where ![.system, .binary, .plugin, .macro].contains(target.type) {
-    let ecosystem: [SwiftSetting] = [
+for target in package.targets {
+    target.swiftSettings = [
         .strictMemorySafety(),
         .enableUpcomingFeature("ExistentialAny"),
         .enableUpcomingFeature("InternalImportsByDefault"),
@@ -119,8 +82,4 @@ for target in package.targets where ![.system, .binary, .plugin, .macro].contain
         .enableExperimentalFeature("Lifetimes"),
         .enableUpcomingFeature("InferIsolatedConformances"),
     ]
-
-    let package: [SwiftSetting] = []
-
-    target.swiftSettings = (target.swiftSettings ?? []) + ecosystem + package
 }

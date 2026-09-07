@@ -1,4 +1,4 @@
-import Formatter_Protocol
+import Formatter
 import Testing
 
 private struct DescriptionFormatter: Formatter::Formatter.`Protocol` {

@@ -1,5 +1,3 @@
-public import Formatter
-public import Formatter_Protocol
 
 public protocol Formattable {
 

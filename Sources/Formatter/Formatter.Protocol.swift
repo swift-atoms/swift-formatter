@@ -1,4 +1,3 @@
-public import Formatter
 
 extension Formatter::Formatter {
 

@@ -1,4 +1,4 @@
-import Formattable
+import Formatter
 import Testing
 
 private struct Value: Formattable {

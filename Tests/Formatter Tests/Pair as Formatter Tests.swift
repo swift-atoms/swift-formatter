@@ -1,4 +1,4 @@
-import Formatter_Pair
+import Formatter
 import Testing
 
 private struct DecimalFormatter: Formatter::Formatter.`Protocol` {
