@@ -1,4 +1,3 @@
-
 public protocol Formattable {
 
     associatedtype Formatter: Formatter::Formatter.`Protocol`

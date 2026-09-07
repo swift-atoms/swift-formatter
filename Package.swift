@@ -13,8 +13,8 @@ let package = Package(
     ],
     products: [
         .library(name: "Formatter", targets: ["Formatter"]),
-        .library(name: "Formatter Standard Library Integration", targets: ["Formatter Standard Library Integration"]),
-        .library(name: "Formatter Foundation Library Integration", targets: ["Formatter Foundation Library Integration"]),
+
+        .library(name: "Formatter Foundation Integration", targets: ["Formatter Foundation Integration"]),
         .library(name: "Formatter Test Support", targets: ["Formatter Test Support"]),
     ],
     dependencies: [
@@ -36,20 +36,13 @@ let package = Package(
             ],
             path: "Sources/Formatter"
         ),
+        
         .target(
-            name: "Formatter Standard Library Integration",
+            name: "Formatter Foundation Integration",
             dependencies: [
                 .target(name: "Formatter"),
             ],
-            path: "Sources/Formatter Standard Library Integration"
-        ),
-        .target(
-            name: "Formatter Foundation Library Integration",
-            dependencies: [
-                .target(name: "Formatter"),
-                .target(name: "Formatter Standard Library Integration"),
-            ],
-            path: "Sources/Formatter Foundation Library Integration"
+            path: "Sources/Formatter Foundation Integration"
         ),
         .target(
             name: "Formatter Test Support",
@@ -63,8 +56,7 @@ let package = Package(
             dependencies: [
                 .target(name: "Formatter"),
                 .target(name: "Formatter Test Support"),
-                .target(name: "Formatter Standard Library Integration"),
-                .target(name: "Formatter Foundation Library Integration"),
+                .target(name: "Formatter Foundation Integration"),
             ],
             path: "Tests/Formatter Tests"
         ),

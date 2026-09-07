@@ -1,4 +1,3 @@
-
 extension Formatter::Formatter {
 
     public protocol `Protocol`<Input, Output, Failure> {
