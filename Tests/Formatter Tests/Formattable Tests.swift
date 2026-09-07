@@ -14,7 +14,7 @@ private struct ValueFormatter: Formatter::Formatter.`Protocol` {
 }
 
 @Suite
-struct `Formattable Tests` {
+struct `Formattable values use their canonical formatter` {
     @Test
     func `value uses its canonical formatter`() {
         #expect(Value(rawValue: 7).formatted() == 7)

@@ -9,7 +9,7 @@ private struct DescriptionFormatter: Formatter::Formatter.`Protocol` {
 }
 
 @Suite
-struct `Formatter Protocol Tests` {
+struct `Formatter conformers transform their input` {
     @Test
     func `formatter transforms its input`() {
         #expect(DescriptionFormatter().format(42) == "42")

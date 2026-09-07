@@ -33,13 +33,13 @@ private struct SecondFailure: Swift.Error, Equatable {
 }
 
 @Suite
-struct `Pair as Formatter Tests` {
-    @Suite struct Unit {}
-    @Suite struct `Edge Case` {}
-    @Suite struct Integration {}
+struct `Paired formatters route inputs and preserve output and failure order` {
+    @Suite struct `Paired formatters preserve both outputs and their input routing` {}
+    @Suite struct `Paired formatter failures identify their side and stop subsequent work` {}
+    @Suite struct `No paired formatter integration cases are defined` {}
 }
 
-extension `Pair as Formatter Tests`.Unit {
+extension `Paired formatters route inputs and preserve output and failure order`.`Paired formatters preserve both outputs and their input routing` {
 
     @Test
     func `both arms succeed: output is a Pair of each arm's output`() throws(Either<Never, Never>) {
@@ -70,7 +70,7 @@ extension `Pair as Formatter Tests`.Unit {
     }
 }
 
-extension `Pair as Formatter Tests`.`Edge Case` {
+extension `Paired formatters route inputs and preserve output and failure order`.`Paired formatter failures identify their side and stop subsequent work` {
 
     @Test
     func `first arm throws: caught as Either left`() {
