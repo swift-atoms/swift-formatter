@@ -1,18 +1,5 @@
 #if Number
 extension Formatter {
-    /// Locale-independent decimal formatting of a Double's shortest round-trip
-    /// decimal representation. Supply this formatter explicitly at call sites.
-    ///
-    /// With no fractionDigits, trailing fractional zeros are omitted. A specified
-    /// precision emits exactly that many digits, rounding the canonical decimal
-    /// digits (not an intermediate binary multiplication). Half ties follow the
-    /// selected rule. The default is nearest, with ties away from zero.
-    ///
-    /// Percent shifts the decimal point two places and appends "%"; it does not
-    /// multiply the Double, so finite inputs cannot overflow during scaling.
-    /// Nonfinite values render "nan", "inf" or "-inf", plus any percent suffix.
-    /// Negative zero keeps its sign. The decimal separator is always "." and
-    /// there is no grouping. Supply another formatter for locale-specific policy.
     public struct Number: Sendable {
         public enum Scale: Sendable {
             case number
@@ -55,7 +42,6 @@ extension Formatter.Number: Formatter.`Protocol` {
         let sign = value.sign == .minus ? "-" : ""
         if value.isInfinite { return sign + "inf" + suffix }
 
-        // String(Double) is ASCII decimal, with an optional signed exponent.
         let parts = String(value.magnitude).split(separator: "e", omittingEmptySubsequences: false)
         let exponent = parts.count == 2 ? Int(parts[1])! : 0
         let mantissa = parts[0].split(separator: ".", omittingEmptySubsequences: false)
@@ -111,7 +97,6 @@ extension Formatter.Number: Formatter.`Protocol` {
             while digits.count > point && digits.last == 0 { digits.removeLast() }
         }
 
-        // Percent shifting a value below one can introduce leading zeros.
         while point > 1 && digits.first == 0 {
             digits.removeFirst()
             point -= 1

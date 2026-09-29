@@ -1,10 +1,5 @@
 #if Time
 extension Formatter {
-    /// Duration display with explicit numeric/locale/rounding policy.
-    /// Units are selected from the magnitude before rounding: < 1 microsecond
-    /// uses ns, < 1 millisecond uses µs, < 1 second uses ms; otherwise seconds.
-    /// Zero uses ns and negatives retain their sign. A rounded value does not
-    /// trigger a second unit selection.
     public struct Duration<Numeric: Formatter.`Protocol`>
     where Numeric.Input == Double, Numeric.Output == String {
         public enum Unit: Sendable, Equatable {
@@ -46,10 +41,6 @@ extension Formatter {
             self.notation = notation
         }
 
-        /// Conversion to Double can lose low-order precision for large durations.
-        /// Components are converted before scaling; no Int64 nanosecond product
-        /// can overflow. All representable Swift.Duration values stay finite at
-        /// these four scales.
         public func scaledValue(for duration: Swift.Duration) -> (value: Double, unit: Unit) {
             let components = duration.components
             let seconds = Double(components.seconds) + Double(components.attoseconds) / 1e18
