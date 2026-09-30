@@ -56,25 +56,25 @@ let package = Package(
     targets: [
         .testTarget(name: "Decision Time Format Tests", dependencies: [.target(name: "Formatter")], path: "Tests/Decision Time Format Tests"),
 
-        .testTarget(name: "Decision Text Casing Tests", dependencies: [.target(name: "Formatter"), .product(name: "Text", package: "swift-text", condition: .when(traits: ["Conversions", "Binary", "Byte"]))], path: "Tests/Decision Text Casing Tests"),
+        .testTarget(name: "Decision Text Casing Tests", dependencies: [.target(name: "Formatter"), .product(name: "Text", package: "swift-text")], path: "Tests/Decision Text Casing Tests"),
 
-        .testTarget(name: "Decision Format Tagged Tests", dependencies: [.target(name: "Formatter"), .product(name: "Tagged", package: "swift-tagged", condition: .when(traits: ["Tagged"]))], path: "Tests/Decision Format Tagged Tests"),
+        .testTarget(name: "Decision Format Tagged Tests", dependencies: [.target(name: "Formatter"), .product(name: "Tagged", package: "swift-tagged")], path: "Tests/Decision Format Tagged Tests"),
 
         .target(name: "Bit Formatter Test Support", dependencies: [.target(name: "Formatter")], path: "Tests/Decision Bit Formatter Support"),
 
-        .testTarget(name: "Decision Bit Formatter Tests", dependencies: [.target(name: "Formatter"), .product(name: "Bit Pattern", package: "swift-bit-pattern", condition: .when(traits: ["BitPattern"]))], path: "Tests/Decision Bit Formatter Tests"),
+        .testTarget(name: "Decision Bit Formatter Tests", dependencies: [.target(name: "Formatter"), .product(name: "Bit Pattern", package: "swift-bit-pattern")], path: "Tests/Decision Bit Formatter Tests"),
 
         .target(
             name: "Formatter",
             dependencies: [
-                .product(name: "Bit Pattern", package: "swift-bit-pattern", condition: .when(traits: ["BitPattern"])),
+                .product(name: "Bit Pattern", package: "swift-bit-pattern"),
 
-                .product(name: "Tagged", package: "swift-tagged", condition: .when(traits: ["Tagged"])),
+                .product(name: "Tagged", package: "swift-tagged"),
                 .product(name: "Either", package: "swift-either"),
                 .product(name: "Pair", package: "swift-pair"),
-                .product(name: "Binary", package: "swift-binary", condition: .when(traits: ["Binary"])),
-                .product(name: "Byte", package: "swift-byte", condition: .when(traits: ["Byte", "Binary"])),
-                .product(name: "Radix", package: "swift-radix", condition: .when(traits: ["Byte", "Radix", "Binary"])),
+                .product(name: "Binary", package: "swift-binary"),
+                .product(name: "Byte", package: "swift-byte"),
+                .product(name: "Radix", package: "swift-radix"),
     ],
             path: "Sources/Formatter"
         ),
