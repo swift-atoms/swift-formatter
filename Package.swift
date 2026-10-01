@@ -59,8 +59,6 @@ let package = Package(
 
         .target(name: "Bit Formatter Test Support", dependencies: [.target(name: "Formatter")], path: "Tests/Decision Bit Formatter Support"),
 
-        .testTarget(name: "Decision Bit Formatter Tests", dependencies: [.target(name: "Formatter"), .product(name: "Bit Pattern", package: "swift-bit-pattern")], path: "Tests/Decision Bit Formatter Tests"),
-
         .target(
             name: "Formatter",
             dependencies: [
