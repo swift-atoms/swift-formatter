@@ -57,8 +57,6 @@ let package = Package(
 
         .testTarget(name: "Decision Text Casing Tests", dependencies: [.target(name: "Formatter"), .product(name: "Text", package: "swift-text")], path: "Tests/Decision Text Casing Tests"),
 
-        .testTarget(name: "Decision Format Tagged Tests", dependencies: [.target(name: "Formatter"), .product(name: "Tagged", package: "swift-tagged")], path: "Tests/Decision Format Tagged Tests"),
-
         .target(name: "Bit Formatter Test Support", dependencies: [.target(name: "Formatter")], path: "Tests/Decision Bit Formatter Support"),
 
         .testTarget(name: "Decision Bit Formatter Tests", dependencies: [.target(name: "Formatter"), .product(name: "Bit Pattern", package: "swift-bit-pattern")], path: "Tests/Decision Bit Formatter Tests"),
