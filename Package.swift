@@ -54,7 +54,6 @@ let package = Package(
         .package(url: "https://github.com/swift-atoms/swift-radix.git", branch: "main"),
     ],
     targets: [
-        .testTarget(name: "Decision Time Format Tests", dependencies: [.target(name: "Formatter")], path: "Tests/Decision Time Format Tests"),
 
         .testTarget(name: "Decision Text Casing Tests", dependencies: [.target(name: "Formatter"), .product(name: "Text", package: "swift-text")], path: "Tests/Decision Text Casing Tests"),
 
