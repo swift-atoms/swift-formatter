@@ -99,7 +99,6 @@ let package = Package(
         ),
         .target(name: "Binary Formatter Test Support", dependencies: [.target(name: "Formatter")], path: "Tests/Absorbed/swift-binary-formatter/Support"),
         .target(name: "Byte Formatter Test Support", dependencies: [.target(name: "Formatter")], path: "Tests/Absorbed/swift-byte-formatter/Support"),
-        .testTarget(name: "Absorbed swift-radix-formatter Radix Formatter Tests", dependencies: [.target(name: "Formatter"), .target(name: "Radix Formatter Test Support")], path: "Tests/Absorbed/swift-radix-formatter/Radix Formatter Tests"),
         .target(name: "Radix Formatter Test Support", dependencies: [.target(name: "Formatter")], path: "Tests/Absorbed/swift-radix-formatter/Support"),
         .testTarget(name: "Absorbed swift-format-formatter Format Formatter Tests", dependencies: [.target(name: "Formatter")], path: "Tests/Absorbed/swift-format-formatter/Format Formatter Tests"),
     ],
