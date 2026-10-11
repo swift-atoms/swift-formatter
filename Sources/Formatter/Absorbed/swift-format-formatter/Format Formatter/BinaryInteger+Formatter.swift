@@ -9,7 +9,7 @@ extension BinaryInteger {
 
     @inlinable
     public func formatted<F>(_ format: F) -> F.Output
-    where F: Formatter.`Protocol`, F.Input: Swift.BinaryInteger, F.Failure == Never {
+    where F: Formatter.`Protocol`, F.Input: Swift::BinaryInteger, F.Failure == Never {
         format.format(F.Input(self))
     }
 }

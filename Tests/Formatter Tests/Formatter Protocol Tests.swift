@@ -1,7 +1,9 @@
 import Formatter
 import Testing
 
-private struct DescriptionFormatter: Formatter::Formatter.`Protocol` {
+private struct DescriptionFormatter: Formatter::Formatter.`Protocol` {}
+
+extension DescriptionFormatter {
     func format(_ value: Int) -> String { String(value) }
     typealias Input = Int
     typealias Output = String

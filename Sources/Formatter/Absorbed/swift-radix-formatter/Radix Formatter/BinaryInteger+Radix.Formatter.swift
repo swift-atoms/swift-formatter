@@ -1,7 +1,7 @@
 #if Radix
 public import Radix
 
-extension Swift.BinaryInteger {
+extension Swift::BinaryInteger {
 
     @inlinable
     public func formatted(_ format: Radix.Formatter) -> String {

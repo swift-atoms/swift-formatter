@@ -2,7 +2,7 @@
 public import Binary
 
 
-extension Swift.Collection where Element == Byte {
+extension Swift::Collection where Element == Byte {
 
     @inlinable
     public func formatted(_ format: Binary.Formatter<Self>) -> String {

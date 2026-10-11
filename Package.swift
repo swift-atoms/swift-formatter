@@ -93,7 +93,6 @@ let package = Package(
             dependencies: [
                 .target(name: "Formatter"),
                 .target(name: "Formatter Test Support"),
-                .target(name: "Formatter Foundation Integration"),
             ],
             path: "Tests/Formatter Tests"
         ),
@@ -104,7 +103,7 @@ let package = Package(
     swiftLanguageModes: [.v6]
 )
 
-for target in package.targets where ![.system, .binary, .plugin].contains(target.type) {
+for target in package.targets where ![.system, .binary, .plugin, .macro].contains(target.type) {
     target.swiftSettings = (target.swiftSettings ?? []) + [
         .strictMemorySafety(),
         .enableUpcomingFeature("ExistentialAny"),

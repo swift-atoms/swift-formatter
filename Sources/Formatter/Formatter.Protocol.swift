@@ -6,7 +6,7 @@ extension Formatter::Formatter {
 
         associatedtype Output
 
-        associatedtype Failure: Swift.Error
+        associatedtype Failure: Swift::Error
 
         func format(_ value: Input) throws(Failure) -> Output
     }

@@ -4,7 +4,7 @@ public import Binary
 
 extension Binary {
 
-    public struct Formatter<Bytes: Swift.Collection>: Sendable, Formatter::Formatter
+    public struct Formatter<Bytes: Swift::Collection>: Sendable, Formatter::Formatter
             .`Protocol`
     where Bytes.Element == Byte {
 

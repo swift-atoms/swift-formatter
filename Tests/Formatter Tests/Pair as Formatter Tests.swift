@@ -14,7 +14,7 @@ extension DecimalFormatter {
     }
 }
 
-private struct AlwaysFailing<Input, Output, Failure: Swift.Error>: Formatter::Formatter.`Protocol` {
+private struct AlwaysFailing<Input, Output, Failure: Swift::Error>: Formatter::Formatter.`Protocol` {
     let error: Failure
 }
 
@@ -24,11 +24,11 @@ extension AlwaysFailing {
     }
 }
 
-private struct FirstFailure: Swift.Error, Equatable {
+private struct FirstFailure: Swift::Error, Equatable {
     let tag: String
 }
 
-private struct SecondFailure: Swift.Error, Equatable {
+private struct SecondFailure: Swift::Error, Equatable {
     let tag: String
 }
 

@@ -4,7 +4,7 @@ public import Radix
 extension Radix.Formatter {
 
     @inlinable
-    public func format<T: Swift.BinaryInteger>(_ value: T) -> String {
+    public func format<T: Swift::BinaryInteger>(_ value: T) -> String {
         render(value)
     }
 }
@@ -12,7 +12,7 @@ extension Radix.Formatter {
 extension Radix.Formatter {
 
     @usableFromInline
-    func render<T: Swift.BinaryInteger>(_ value: T) -> String {
+    func render<T: Swift::BinaryInteger>(_ value: T) -> String {
         let base = T.Magnitude(radix.base)
         var magnitude = value.magnitude
 

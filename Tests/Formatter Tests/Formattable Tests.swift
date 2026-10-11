@@ -3,10 +3,15 @@ import Testing
 
 private struct Value: Formattable {
     let rawValue: Int
+}
+
+extension Value {
     static let formatter = ValueFormatter()
 }
 
-private struct ValueFormatter: Formatter::Formatter.`Protocol` {
+private struct ValueFormatter: Formatter::Formatter.`Protocol` {}
+
+extension ValueFormatter {
     func format(_ value: Value) -> Int { value.rawValue }
     typealias Input = Value
     typealias Output = Int
