@@ -1,3 +1,3 @@
 #if BitPattern
-@_exported public import Bit_Pattern
+    @_exported public import Bit_Pattern
 #endif

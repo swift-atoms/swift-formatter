@@ -1,8 +1,8 @@
 #if Byte
-public import Byte
+    public import Byte
 
-extension Byte {
+    extension Byte {
 
-    public enum Size {}
-}
+        public enum Size {}
+    }
 #endif

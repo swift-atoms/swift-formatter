@@ -70,21 +70,21 @@ let package = Package(
                 .product(name: "Binary", package: "swift-binary"),
                 .product(name: "Byte", package: "swift-byte"),
                 .product(name: "Radix", package: "swift-radix"),
-    ],
+            ],
             path: "Sources/Formatter"
         ),
 
         .target(
             name: "Formatter Foundation Integration",
             dependencies: [
-                .target(name: "Formatter"),
+                .target(name: "Formatter")
             ],
             path: "Sources/Formatter Foundation Integration"
         ),
         .target(
             name: "Formatter Test Support",
             dependencies: [
-                .target(name: "Formatter"),
+                .target(name: "Formatter")
             ],
             path: "Tests/Support"
         ),
@@ -104,14 +104,15 @@ let package = Package(
 )
 
 for target in package.targets where ![.system, .binary, .plugin, .macro].contains(target.type) {
-    target.swiftSettings = (target.swiftSettings ?? []) + [
-        .strictMemorySafety(),
-        .enableUpcomingFeature("ExistentialAny"),
-        .enableUpcomingFeature("InternalImportsByDefault"),
-        .enableUpcomingFeature("MemberImportVisibility"),
-        .enableUpcomingFeature("NonisolatedNonsendingByDefault"),
-        .enableUpcomingFeature("InferIsolatedConformances"),
-        .enableExperimentalFeature("Lifetimes"),
-        .treatAllWarnings(as: .error),
-    ]
+    target.swiftSettings =
+        (target.swiftSettings ?? []) + [
+            .strictMemorySafety(),
+            .enableUpcomingFeature("ExistentialAny"),
+            .enableUpcomingFeature("InternalImportsByDefault"),
+            .enableUpcomingFeature("MemberImportVisibility"),
+            .enableUpcomingFeature("NonisolatedNonsendingByDefault"),
+            .enableUpcomingFeature("InferIsolatedConformances"),
+            .enableExperimentalFeature("Lifetimes"),
+            .treatAllWarnings(as: .error),
+        ]
 }

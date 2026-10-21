@@ -1,8 +1,8 @@
 #if Radix
-public import Radix
+    public import Radix
 
-extension Radix.Formatter {
+    extension Radix.Formatter {
 
-    public enum Sign {}
-}
+        public enum Sign {}
+    }
 #endif
