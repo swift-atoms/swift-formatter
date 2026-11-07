@@ -1,6 +1,11 @@
 #if Number
     extension Formatter {
         public struct Number: Sendable {
+            public enum Scale: Sendable {
+                case number
+                case percent
+            }
+
             public let fractionDigits: Int?
             public let rounding: FloatingPointRoundingRule
             public let scale: Scale
@@ -20,13 +25,6 @@
             }
         }
     }
-
-extension Formatter.Number {
-        public enum Scale: Sendable {
-            case number
-            case percent
-        }
-}
 
     extension Formatter.Number: Formatter.`Protocol` {
         public typealias Input = Double
