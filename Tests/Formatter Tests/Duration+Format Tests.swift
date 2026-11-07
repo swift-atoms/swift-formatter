@@ -2,14 +2,18 @@
     import Testing
     import Formatter
 
-    @Suite
-    struct `Duration Format Tests` {
-        @Suite struct Unit {}
-        @Suite struct `Edge Case` {}
-        @Suite struct Integration {}
-    }
+enum `Duration+Format Tests` {}
 
-    extension `Duration Format Tests`.Unit {
+extension `Duration+Format Tests` {
+        @Suite
+        struct `Duration Format Tests` {
+            @Suite struct Unit {}
+            @Suite struct `Edge Case` {}
+            @Suite struct Integration {}
+        }
+}
+
+    extension `Duration+Format Tests`.`Duration Format Tests`.Unit {
         @Test
         func `automatic units cover subsecond boundaries`() {
             #expect(Duration.nanoseconds(500).formatted(Formatter.Duration(numeric: Formatter.Number())) == "500 ns")
@@ -38,7 +42,7 @@
         }
     }
 
-    extension `Duration Format Tests`.`Edge Case` {
+    extension `Duration+Format Tests`.`Duration Format Tests`.`Edge Case` {
         @Test
         func `negative durations select units by magnitude`() {
             #expect(Duration.seconds(-1.5).formatted(Formatter.Duration(numeric: Formatter.Number())) == "-1.5 s")
@@ -56,7 +60,7 @@
         }
     }
 
-    extension `Duration Format Tests`.Integration {
+    extension `Duration+Format Tests`.`Duration Format Tests`.Integration {
         @Test
         func `format style is reusable through the formatter protocol surface`() {
             let format = Formatter.Duration(numeric: Formatter.Number(fractionDigits: 3))

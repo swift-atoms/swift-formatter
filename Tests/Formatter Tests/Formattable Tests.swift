@@ -18,10 +18,14 @@ extension ValueFormatter {
     typealias Failure = Never
 }
 
-@Suite
-struct `Formattable values use their canonical formatter` {
-    @Test
-    func `value uses its canonical formatter`() {
-        #expect(Value(rawValue: 7).formatted() == 7)
+enum `Formattable Tests` {}
+
+extension `Formattable Tests` {
+    @Suite
+    struct `Formattable values use their canonical formatter` {
+        @Test
+        func `value uses its canonical formatter`() {
+            #expect(Value(rawValue: 7).formatted() == 7)
+        }
     }
 }

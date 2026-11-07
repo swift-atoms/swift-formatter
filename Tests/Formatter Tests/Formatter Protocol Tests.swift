@@ -10,10 +10,14 @@ extension DescriptionFormatter {
     typealias Failure = Never
 }
 
-@Suite
-struct `Formatter conformers transform their input` {
-    @Test
-    func `formatter transforms its input`() {
-        #expect(DescriptionFormatter().format(42) == "42")
+enum `Formatter Protocol Tests` {}
+
+extension `Formatter Protocol Tests` {
+    @Suite
+    struct `Formatter conformers transform their input` {
+        @Test
+        func `formatter transforms its input`() {
+            #expect(DescriptionFormatter().format(42) == "42")
+        }
     }
 }
