@@ -54,15 +54,16 @@
             let selected: Unit
             if unit == .auto {
                 let magnitude = abs(seconds)
-                selected = if magnitude < 0.000001 {
-                    .nanoseconds
-                } else if magnitude < 0.001 {
-                    .microseconds
-                } else if magnitude < 1 {
-                    .milliseconds
-                } else {
-                    .seconds
-                }
+                selected =
+                    if magnitude < 0.000001 {
+                        .nanoseconds
+                    } else if magnitude < 0.001 {
+                        .microseconds
+                    } else if magnitude < 1 {
+                        .milliseconds
+                    } else {
+                        .seconds
+                    }
             } else {
                 selected = unit
             }

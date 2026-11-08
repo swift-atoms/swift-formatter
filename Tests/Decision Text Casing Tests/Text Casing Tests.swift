@@ -3,9 +3,9 @@
     import Text
     import Testing
 
-enum `Text Casing Tests` {}
+    enum `Text Casing Tests` {}
 
-extension `Text Casing Tests` {
+    extension `Text Casing Tests` {
         @Suite
         struct `Text casing - Upper` {
             @Suite struct Unit {}
@@ -32,9 +32,9 @@ extension `Text Casing Tests` {
                 #expect("HeLLo".uppercased() == "HELLO")
             }
         }
-}
+    }
 
-extension `Text Casing Tests` {
+    extension `Text Casing Tests` {
         @Suite
         struct `Text casing - Lower` {
             @Suite struct Unit {}
@@ -56,9 +56,9 @@ extension `Text Casing Tests` {
                 #expect("".lowercased().isEmpty)
             }
         }
-}
+    }
 
-extension `Text Casing Tests` {
+    extension `Text Casing Tests` {
         @Suite
         struct `Text casing - Title` {
             @Suite struct Unit {}
@@ -90,9 +90,9 @@ extension `Text Casing Tests` {
                 #expect(Text.titlecased("HELLO WORLD") == "Hello World")
             }
         }
-}
+    }
 
-extension `Text Casing Tests` {
+    extension `Text Casing Tests` {
         @Suite
         struct `Text casing - Sentence` {
             @Suite struct Unit {}
@@ -119,9 +119,9 @@ extension `Text Casing Tests` {
                 #expect(Text.sentencecased("").isEmpty)
             }
         }
-}
+    }
 
-extension `Text Casing Tests` {
+    extension `Text Casing Tests` {
         @Suite
         struct `Text casing - Custom` {
             @Suite struct Unit {}
@@ -140,9 +140,9 @@ extension `Text Casing Tests` {
                 #expect("abc".formatted(reverse) == "cba")
             }
         }
-}
+    }
 
-extension `Text Casing Tests` {
+    extension `Text Casing Tests` {
         @Suite
         struct `StringProtocol.formatted - Substring` {
             @Suite struct Unit {}
@@ -163,9 +163,9 @@ extension `Text Casing Tests` {
                 #expect(Text.titlecased(sub) == "Hello World")
             }
         }
-}
+    }
 
-extension `Text Casing Tests` {
+    extension `Text Casing Tests` {
         @Suite
         struct `Text casing - Formatter.Protocol conformance` {
             @Suite struct Unit {}
@@ -188,6 +188,6 @@ extension `Text Casing Tests` {
                 #expect(applyAny(Format<String, String, Never> { $0 }, to: "HELLO".lowercased()) == "hello")
             }
         }
-}
+    }
 
 #endif

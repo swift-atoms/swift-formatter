@@ -2,9 +2,9 @@
     import Formatter
     import Testing
 
-enum `Format.Case Tests` {}
+    enum `Format.Case Tests` {}
 
-extension `Format.Case Tests` {
+    extension `Format.Case Tests` {
         @Suite
         struct `Generic Formatter.Protocol overloads` {
             private struct Suffix: Formatter.`Protocol` {
@@ -74,5 +74,5 @@ extension `Format.Case Tests` {
                 #expect(Float(1.25).formatted(DoubleFloatingPoint()) == 2.5)
             }
         }
-}
+    }
 #endif

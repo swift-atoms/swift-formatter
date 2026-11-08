@@ -2,16 +2,16 @@
     import Testing
     import Formatter
 
-enum `Duration+Format Tests` {}
+    enum `Duration+Format Tests` {}
 
-extension `Duration+Format Tests` {
+    extension `Duration+Format Tests` {
         @Suite
         struct `Duration Format Tests` {
             @Suite struct Unit {}
             @Suite struct `Edge Case` {}
             @Suite struct Integration {}
         }
-}
+    }
 
     extension `Duration+Format Tests`.`Duration Format Tests`.Unit {
         @Test

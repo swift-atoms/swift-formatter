@@ -23,9 +23,9 @@
         ]
     )
 
-enum `Byte.Size.Formatter Tests` {}
+    enum `Byte.Size.Formatter Tests` {}
 
-extension `Byte.Size.Formatter Tests` {
+    extension `Byte.Size.Formatter Tests` {
         @Suite
         struct `Byte.Size.Formatter - Decimal` {
 
@@ -58,9 +58,9 @@ extension `Byte.Size.Formatter Tests` {
                 #expect(1000.formatted(Byte.Size.Formatter(scale: decimal)) == "1.0 kB")
             }
         }
-}
+    }
 
-extension `Byte.Size.Formatter Tests` {
+    extension `Byte.Size.Formatter Tests` {
         @Suite
         struct `Byte.Size.Formatter - IEC` {
 
@@ -88,9 +88,9 @@ extension `Byte.Size.Formatter Tests` {
                 #expect(0.formatted(Byte.Size.Formatter(scale: iec)) == "0.0 B")
             }
         }
-}
+    }
 
-extension `Byte.Size.Formatter Tests` {
+    extension `Byte.Size.Formatter Tests` {
         @Suite
         struct `Byte.Size.Formatter - Precision` {
 
@@ -114,9 +114,9 @@ extension `Byte.Size.Formatter Tests` {
                 #expect(1900.formatted(Byte.Size.Formatter(scale: iec, precision: 1)) == "1.8 KiB")
             }
         }
-}
+    }
 
-extension `Byte.Size.Formatter Tests` {
+    extension `Byte.Size.Formatter Tests` {
         @Suite
         struct `Byte.Size.Formatter - Separator` {
 
@@ -129,9 +129,9 @@ extension `Byte.Size.Formatter Tests` {
                 #expect(1536.formatted(Byte.Size.Formatter(scale: iec, separator: "")) == "1.5KiB")
             }
         }
-}
+    }
 
-extension `Byte.Size.Formatter Tests` {
+    extension `Byte.Size.Formatter Tests` {
         @Suite
         struct `Byte.Size.Formatter - Sign and types` {
 
@@ -161,9 +161,9 @@ extension `Byte.Size.Formatter Tests` {
                 #expect(5_000_000.formatted(Byte.Size.Formatter(scale: kOnly)) == "5000.0 kB")
             }
         }
-}
+    }
 
-extension `Byte.Size.Formatter Tests` {
+    extension `Byte.Size.Formatter Tests` {
         @Suite
         struct `Byte.Size.Formatter - Formatter.Protocol conformance` {
 
@@ -182,5 +182,5 @@ extension `Byte.Size.Formatter Tests` {
                 #expect(1536.formatted(Byte.Size.Formatter<Int>(scale: iec)) == "1.5 KiB")
             }
         }
-}
+    }
 #endif

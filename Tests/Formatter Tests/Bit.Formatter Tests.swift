@@ -4,9 +4,9 @@
     @testable import Formatter
     import Bit_Pattern
 
-enum `Bit.Formatter Tests` {}
+    enum `Bit.Formatter Tests` {}
 
-extension `Bit.Formatter Tests` {
+    extension `Bit.Formatter Tests` {
         @Suite
         struct `Bit.Formatter - Base2 MSB` {
 
@@ -47,9 +47,9 @@ extension `Bit.Formatter Tests` {
 
             @Suite struct Integration {}
         }
-}
+    }
 
-extension `Bit.Formatter Tests` {
+    extension `Bit.Formatter Tests` {
         @Suite
         struct `Bit.Formatter - Order` {
 
@@ -79,9 +79,9 @@ extension `Bit.Formatter Tests` {
 
             @Suite struct Integration {}
         }
-}
+    }
 
-extension `Bit.Formatter Tests` {
+    extension `Bit.Formatter Tests` {
         @Suite
         struct `Bit.Formatter - Grouping` {
 
@@ -127,9 +127,9 @@ extension `Bit.Formatter Tests` {
 
             @Suite struct Integration {}
         }
-}
+    }
 
-extension `Bit.Formatter Tests` {
+    extension `Bit.Formatter Tests` {
         @Suite
         struct `Bit.Formatter - Formatter.Protocol conformance` {
 
@@ -152,5 +152,5 @@ extension `Bit.Formatter Tests` {
 
             @Suite struct Integration {}
         }
-}
+    }
 #endif

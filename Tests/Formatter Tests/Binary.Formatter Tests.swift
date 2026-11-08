@@ -3,9 +3,9 @@
 
     @testable import Formatter
 
-enum `Binary.Formatter Tests` {}
+    enum `Binary.Formatter Tests` {}
 
-extension `Binary.Formatter Tests` {
+    extension `Binary.Formatter Tests` {
         @Suite
         struct `Binary.Formatter - Continuous hex` {
 
@@ -46,9 +46,9 @@ extension `Binary.Formatter Tests` {
 
             @Suite struct Integration {}
         }
-}
+    }
 
-extension `Binary.Formatter Tests` {
+    extension `Binary.Formatter Tests` {
         @Suite
         struct `Binary.Formatter - Spaced hex` {
 
@@ -76,9 +76,9 @@ extension `Binary.Formatter Tests` {
 
             @Suite struct Integration {}
         }
-}
+    }
 
-extension `Binary.Formatter Tests` {
+    extension `Binary.Formatter Tests` {
         @Suite
         struct `Binary.Formatter - Radix composition` {
 
@@ -106,9 +106,9 @@ extension `Binary.Formatter Tests` {
 
             @Suite struct Integration {}
         }
-}
+    }
 
-extension `Binary.Formatter Tests` {
+    extension `Binary.Formatter Tests` {
         @Suite
         struct `Binary.Formatter - Formatter.Protocol conformance` {
 
@@ -131,5 +131,5 @@ extension `Binary.Formatter Tests` {
 
             @Suite struct Integration {}
         }
-}
+    }
 #endif

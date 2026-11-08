@@ -3,9 +3,9 @@
 
     @testable import Formatter
 
-enum `Byte.Formatter Tests` {}
+    enum `Byte.Formatter Tests` {}
 
-extension `Byte.Formatter Tests` {
+    extension `Byte.Formatter Tests` {
         @Suite
         struct `Byte.Formatter - Hexadecimal` {
 
@@ -41,9 +41,9 @@ extension `Byte.Formatter Tests` {
                 }
             }
         }
-}
+    }
 
-extension `Byte.Formatter Tests` {
+    extension `Byte.Formatter Tests` {
         @Suite
         struct `Byte.Formatter - Other radixes` {
 
@@ -64,9 +64,9 @@ extension `Byte.Formatter Tests` {
                 #expect(Byte(1).formatted(Byte.Formatter(radix: .binary)) == "00000001")
             }
         }
-}
+    }
 
-extension `Byte.Formatter Tests` {
+    extension `Byte.Formatter Tests` {
         @Suite
         struct `Byte.Formatter - Formatter.Protocol conformance` {
 
@@ -85,5 +85,5 @@ extension `Byte.Formatter Tests` {
                 #expect(byte.formatted(Byte.Formatter.hexadecimal) == "0a")
             }
         }
-}
+    }
 #endif
