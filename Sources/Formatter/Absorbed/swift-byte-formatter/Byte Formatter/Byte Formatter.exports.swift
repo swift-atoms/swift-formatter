@@ -1,5 +1,5 @@
 #if Byte
-    public import Byte
+    import Byte
 
-    public import Radix
+    import Radix
 #endif
