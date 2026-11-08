@@ -1,3 +1,3 @@
 #if Binary
-    public import Binary
+    import Binary
 #endif
