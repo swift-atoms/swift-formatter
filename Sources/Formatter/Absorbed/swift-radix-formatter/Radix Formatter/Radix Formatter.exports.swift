@@ -1,3 +1,3 @@
 #if Radix
-    public import Radix
+    import Radix
 #endif
