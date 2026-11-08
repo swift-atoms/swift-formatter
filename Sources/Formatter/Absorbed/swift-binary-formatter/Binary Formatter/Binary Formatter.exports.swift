@@ -1,3 +1,3 @@
 #if Binary
-    @_exported public import Binary
+    public import Binary
 #endif

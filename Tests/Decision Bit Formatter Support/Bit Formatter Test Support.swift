@@ -1,3 +1,3 @@
 #if BitPattern
-    @_exported public import Formatter
+    public import Formatter
 #endif

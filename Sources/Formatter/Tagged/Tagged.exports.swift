@@ -1,3 +1,3 @@
 #if Tagged
-    @_exported public import Tagged
+    public import Tagged
 #endif

@@ -1,3 +1,3 @@
 #if Byte
-    @_exported public import Formatter
+    public import Formatter
 #endif
