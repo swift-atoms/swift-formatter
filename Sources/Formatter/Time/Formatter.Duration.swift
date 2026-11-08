@@ -2,6 +2,14 @@
     extension Formatter {
         public struct Duration<Numeric: Formatter.`Protocol`>
         where Numeric.Input == Double, Numeric.Output == String {
+            public enum Unit: Sendable, Equatable {
+                case auto, nanoseconds, microseconds, milliseconds, seconds
+            }
+
+            public enum Notation: Sendable, Equatable {
+                case spaced, compactName
+            }
+
             public let numeric: Numeric
             public let unit: Unit
             public let notation: Notation
@@ -17,16 +25,6 @@
             }
         }
     }
-
-extension Formatter.Duration {
-        public enum Unit: Sendable, Equatable {
-            case auto, nanoseconds, microseconds, milliseconds, seconds
-        }
-
-        public enum Notation: Sendable, Equatable {
-            case spaced, compactName
-        }
-}
 
     extension Formatter.Duration.Unit {
         public var symbol: String {
