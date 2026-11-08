@@ -1,3 +1,3 @@
 #if Byte
-    public import Byte
+    import Byte
 #endif
