@@ -55,21 +55,21 @@ let package = Package(
     ],
     targets: [
 
-        .testTarget(name: "Decision Text Casing Tests", dependencies: [.target(name: "Formatter"), .product(name: "Text", package: "swift-text")], path: "Tests/Decision Text Casing Tests"),
+        .testTarget(name: "Decision Text Casing Tests", dependencies: [.target(name: "Formatter"), .product(name: "Text", package: "swift-text", condition: .when(traits: ["Conversions"]))], path: "Tests/Decision Text Casing Tests"),
 
         .target(name: "Bit Formatter Test Support", dependencies: [.target(name: "Formatter")], path: "Tests/Decision Bit Formatter Support"),
 
         .target(
             name: "Formatter",
             dependencies: [
-                .product(name: "Bit Pattern", package: "swift-bit-pattern"),
+                .product(name: "Bit Pattern", package: "swift-bit-pattern", condition: .when(traits: ["BitPattern"])),
 
-                .product(name: "Tagged", package: "swift-tagged"),
+                .product(name: "Tagged", package: "swift-tagged", condition: .when(traits: ["Tagged"])),
                 .product(name: "Either", package: "swift-either"),
                 .product(name: "Pair", package: "swift-pair"),
-                .product(name: "Binary", package: "swift-binary"),
-                .product(name: "Byte", package: "swift-byte"),
-                .product(name: "Radix", package: "swift-radix"),
+                .product(name: "Binary", package: "swift-binary", condition: .when(traits: ["Binary"])),
+                .product(name: "Byte", package: "swift-byte", condition: .when(traits: ["Byte"])),
+                .product(name: "Radix", package: "swift-radix", condition: .when(traits: ["Byte", "Radix"])),
             ],
             path: "Sources/Formatter"
         ),
