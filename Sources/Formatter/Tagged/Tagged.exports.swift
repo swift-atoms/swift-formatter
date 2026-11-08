@@ -1,3 +1,3 @@
 #if Tagged
-    public import Tagged
+    import Tagged
 #endif
