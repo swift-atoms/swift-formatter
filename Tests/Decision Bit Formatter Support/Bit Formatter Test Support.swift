@@ -1,3 +1,3 @@
 #if BitPattern
-    public import Formatter
+    import Formatter
 #endif

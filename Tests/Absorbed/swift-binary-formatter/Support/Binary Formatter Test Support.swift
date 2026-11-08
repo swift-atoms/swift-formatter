@@ -1,3 +1,3 @@
 #if Binary
-    public import Formatter
+    import Formatter
 #endif
