@@ -10,18 +10,29 @@
             public let rounding: FloatingPointRoundingRule
             public let scale: Scale
 
+            /// The fewest integer digits written, padded with leading zeros: 4 writes 660 as 0660.
+            public let minimumIntegerDigits: Int
+
+            /// How the integer digits are grouped, or nil to write them in one run.
+            public let grouping: Grouping?
+
             public init(
                 fractionDigits: Int? = nil,
                 rounding: FloatingPointRoundingRule = .toNearestOrAwayFromZero,
-                scale: Scale = .number
+                scale: Scale = .number,
+                minimumIntegerDigits: Int = 1,
+                grouping: Grouping? = nil
             ) {
                 precondition(
                     fractionDigits.map { (0...324).contains($0) } ?? true,
                     "fractionDigits must be between 0 and 324"
                 )
+                precondition(minimumIntegerDigits >= 1, "minimumIntegerDigits must be at least 1")
                 self.fractionDigits = fractionDigits
                 self.rounding = rounding
                 self.scale = scale
+                self.minimumIntegerDigits = minimumIntegerDigits
+                self.grouping = grouping
             }
         }
     }
@@ -114,7 +125,12 @@
                 digits.removeFirst()
                 point -= 1
             }
-            let whole = String(decoding: digits[..<point].map { $0 + 48 }, as: UTF8.self)
+            if point < minimumIntegerDigits {
+                digits.insert(contentsOf: repeatElement(UInt8(0), count: minimumIntegerDigits - point), at: 0)
+                point = minimumIntegerDigits
+            }
+            let integer = String(decoding: digits[..<point].map { $0 + 48 }, as: UTF8.self)
+            let whole = grouping.map { $0.apply(to: integer) } ?? integer
             let fraction = String(decoding: digits[point...].map { $0 + 48 }, as: UTF8.self)
             return sign + whole + (fraction.isEmpty ? "" : "." + fraction) + suffix
         }
