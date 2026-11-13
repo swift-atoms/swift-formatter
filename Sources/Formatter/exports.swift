@@ -26,3 +26,7 @@
 
     @_exported public import Radix
 #endif
+
+#if Number
+    @_exported public import Cardinal
+#endif

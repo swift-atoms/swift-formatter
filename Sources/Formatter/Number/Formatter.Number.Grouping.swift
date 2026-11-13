@@ -1,4 +1,6 @@
 #if Number
+    public import Cardinal
+
     extension Formatter.Number {
 
         /// How the integer digits of a number are split into groups, counted from the decimal point leftwards.
@@ -12,13 +14,13 @@
             public let separator: String
 
             /// The number of digits in the group next to the decimal point.
-            public let primary: Int
+            public let primary: Cardinal
 
             /// The number of digits in every group further from the decimal point.
-            public let secondary: Int
+            public let secondary: Cardinal
 
             /// Groups of `primary` digits next to the decimal point and `secondary` digits beyond it, both at least 1.
-            public init(separator: String, primary: Int, secondary: Int) {
+            public init(separator: String, primary: Cardinal, secondary: Cardinal) {
                 precondition(primary > 0 && secondary > 0, "group sizes must be positive")
                 self.separator = separator
                 self.primary = primary
@@ -30,7 +32,7 @@
     extension Formatter.Number.Grouping {
 
         /// Groups of `size` digits throughout, `size` at least 1.
-        public init(separator: String, size: Int) {
+        public init(separator: String, size: Cardinal) {
             self.init(separator: separator, primary: size, secondary: size)
         }
 
@@ -38,12 +40,12 @@
         func apply(to digits: String) -> String {
             var groups: [Substring] = []
             var end = digits.endIndex
-            var size = primary
+            var size = Int(clamping: primary)
             while digits.distance(from: digits.startIndex, to: end) > size {
                 let start = digits.index(end, offsetBy: -size)
                 groups.append(digits[start..<end])
                 end = start
-                size = secondary
+                size = Int(clamping: secondary)
             }
             groups.append(digits[digits.startIndex..<end])
             return groups.reversed().joined(separator: separator)

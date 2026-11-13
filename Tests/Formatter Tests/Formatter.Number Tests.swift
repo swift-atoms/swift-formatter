@@ -52,7 +52,7 @@
 
             @Test
             func `NaN and infinities are not grouped`() {
-                let number = Number(minimumIntegerDigits: 4, grouping: Self.thousands)
+                let number = Number(padding: 4, grouping: Self.thousands)
                 #expect(number.format(.nan) == "nan")
                 #expect(number.format(.infinity) == "inf")
                 #expect(number.format(-.infinity) == "-inf")
@@ -70,39 +70,39 @@
 
     extension `Formatter.Number Tests` {
         @Suite
-        struct `Minimum integer digits` {
+        struct Padding {
             typealias Number = Formatter.Number
 
             @Test
             func `Pads the integer digits with leading zeros and never truncates`() {
-                #expect(Number(minimumIntegerDigits: 4).format(660) == "0660")
-                #expect(Number(minimumIntegerDigits: 4).format(1_234) == "1234")
-                #expect(Number(minimumIntegerDigits: 4).format(12_345) == "12345")
-                #expect(Number(minimumIntegerDigits: 3).format(0) == "000")
-                #expect(Number(minimumIntegerDigits: 1).format(0.5) == "0.5")
-                #expect(Number(minimumIntegerDigits: 2).format(0.5) == "00.5")
+                #expect(Number(padding: 4).format(660) == "0660")
+                #expect(Number(padding: 4).format(1_234) == "1234")
+                #expect(Number(padding: 4).format(12_345) == "12345")
+                #expect(Number(padding: 3).format(0) == "000")
+                #expect(Number(padding: 1).format(0.5) == "0.5")
+                #expect(Number(padding: 2).format(0.5) == "00.5")
             }
 
             @Test
             func `The sign goes in front of the zeros`() {
-                #expect(Number(minimumIntegerDigits: 3).format(-5) == "-005")
-                #expect(Number(minimumIntegerDigits: 3).format(-0.25) == "-000.25")
+                #expect(Number(padding: 3).format(-5) == "-005")
+                #expect(Number(padding: 3).format(-0.25) == "-000.25")
             }
 
             @Test
             func `Padding counts digits after rounding and before the percent shift is undone`() {
-                #expect(Number(fractionDigits: 1, minimumIntegerDigits: 2).format(9.96) == "10.0")
-                #expect(Number(fractionDigits: 1, minimumIntegerDigits: 3).format(9.96) == "010.0")
-                #expect(Number(fractionDigits: 2, minimumIntegerDigits: 2).format(3.14159) == "03.14")
-                #expect(Number(scale: .percent, minimumIntegerDigits: 3).format(0.05) == "005%")
+                #expect(Number(fractionDigits: 1, padding: 2).format(9.96) == "10.0")
+                #expect(Number(fractionDigits: 1, padding: 3).format(9.96) == "010.0")
+                #expect(Number(fractionDigits: 2, padding: 2).format(3.14159) == "03.14")
+                #expect(Number(scale: .percent, padding: 3).format(0.05) == "005%")
             }
 
             @Test
             func `Padding zeros are grouped like any other digit`() {
                 let grouping = Number.Grouping(separator: ",", size: 3)
-                #expect(Number(minimumIntegerDigits: 4, grouping: grouping).format(660) == "0,660")
-                #expect(Number(minimumIntegerDigits: 7, grouping: grouping).format(-42) == "-0,000,042")
-                #expect(Number(minimumIntegerDigits: 3, grouping: grouping).format(42) == "042")
+                #expect(Number(padding: 4, grouping: grouping).format(660) == "0,660")
+                #expect(Number(padding: 7, grouping: grouping).format(-42) == "-0,000,042")
+                #expect(Number(padding: 3, grouping: grouping).format(42) == "042")
             }
         }
     }

@@ -1,4 +1,6 @@
 #if Number
+    public import Cardinal
+
     extension Formatter {
         public struct Number: Sendable {
             public enum Scale: Sendable {
@@ -10,8 +12,8 @@
             public let rounding: FloatingPointRoundingRule
             public let scale: Scale
 
-            /// The fewest integer digits written, padded with leading zeros: 4 writes 660 as 0660.
-            public let minimumIntegerDigits: Int
+            /// The fewest integer digits written, made up with leading zeros: a padding of 4 writes 660 as 0660.
+            public let padding: Cardinal
 
             /// How the integer digits are grouped, or nil to write them in one run.
             public let grouping: Grouping?
@@ -20,18 +22,18 @@
                 fractionDigits: Int? = nil,
                 rounding: FloatingPointRoundingRule = .toNearestOrAwayFromZero,
                 scale: Scale = .number,
-                minimumIntegerDigits: Int = 1,
+                padding: Cardinal = 1,
                 grouping: Grouping? = nil
             ) {
                 precondition(
                     fractionDigits.map { (0...324).contains($0) } ?? true,
                     "fractionDigits must be between 0 and 324"
                 )
-                precondition(minimumIntegerDigits >= 1, "minimumIntegerDigits must be at least 1")
+                precondition(padding > 0, "padding must be at least 1")
                 self.fractionDigits = fractionDigits
                 self.rounding = rounding
                 self.scale = scale
-                self.minimumIntegerDigits = minimumIntegerDigits
+                self.padding = padding
                 self.grouping = grouping
             }
         }
@@ -125,9 +127,10 @@
                 digits.removeFirst()
                 point -= 1
             }
-            if point < minimumIntegerDigits {
-                digits.insert(contentsOf: repeatElement(UInt8(0), count: minimumIntegerDigits - point), at: 0)
-                point = minimumIntegerDigits
+            let width = Int(clamping: padding)
+            if point < width {
+                digits.insert(contentsOf: repeatElement(UInt8(0), count: width - point), at: 0)
+                point = width
             }
             let integer = String(decoding: digits[..<point].map { $0 + 48 }, as: UTF8.self)
             let whole = grouping.map { $0.apply(to: integer) } ?? integer
