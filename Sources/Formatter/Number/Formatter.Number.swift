@@ -104,6 +104,7 @@
                     case .up: increment = !negative && nonzero
                     case .down: increment = negative && nonzero
                     case .toNearestOrAwayFromZero: increment = digits[kept] >= 5
+
                     case .toNearestOrEven:
                         increment =
                             digits[kept] > 5
@@ -111,6 +112,7 @@
                                 && (inexact
                                     || discarded.dropFirst().contains { $0 != 0 }
                                     || digits[kept - 1] % 2 == 1))
+
                     @unknown default:
                         preconditionFailure("Unsupported rounding rule")
                     }
