@@ -53,6 +53,7 @@ let package = Package(
         .package(url: "https://github.com/swift-atoms/swift-byte.git", branch: "main"),
         .package(url: "https://github.com/swift-atoms/swift-radix.git", branch: "main"),
         .package(url: "https://github.com/swift-atoms/swift-cardinal.git", branch: "main"),
+        .package(url: "https://github.com/swift-atoms/swift-rational.git", branch: "main"),
     ],
     targets: [
 
@@ -72,6 +73,7 @@ let package = Package(
                 .product(name: "Byte", package: "swift-byte"),
                 .product(name: "Radix", package: "swift-radix"),
                 .product(name: "Cardinal", package: "swift-cardinal"),
+                .product(name: "Rational", package: "swift-rational"),
             ],
             path: "Sources/Formatter"
         ),
@@ -95,6 +97,7 @@ let package = Package(
             dependencies: [
                 .target(name: "Formatter"),
                 .target(name: "Formatter Test Support"),
+                .product(name: "Rational", package: "swift-rational"),
             ],
             path: "Tests/Formatter Tests"
         ),
