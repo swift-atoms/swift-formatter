@@ -71,19 +71,9 @@
     }
 
     extension Formatter.Number {
-        var suffix: String {
-            switch scale {
-            case .number: ""
-            case .percent: "%"
-            }
-        }
+        var suffix: String { scale == .percent ? "%" : "" }
 
-        var decimalShift: Int {
-            switch scale {
-            case .number: 0
-            case .percent: 2
-            }
-        }
+        var decimalShift: Int { scale == .percent ? 2 : 0 }
 
         /// Writes a decimal magnitude given as `digits` with the decimal point after the first `point`
         /// of them. `inexact` says that the value goes on beyond `digits` with something nonzero; such

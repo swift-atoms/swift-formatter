@@ -97,7 +97,10 @@ let package = Package(
             dependencies: [
                 .target(name: "Formatter"),
                 .target(name: "Formatter Test Support"),
+                .target(name: "Radix Formatter Test Support"),
                 .product(name: "Rational", package: "swift-rational"),
+                .product(name: "Bit Pattern", package: "swift-bit-pattern"),
+                .product(name: "Tagged", package: "swift-tagged"),
             ],
             path: "Tests/Formatter Tests"
         ),
